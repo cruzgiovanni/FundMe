@@ -2,3 +2,4 @@
 .deps/
 .states/
 artifacts/
+.prettierrc.json
