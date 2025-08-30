@@ -13,8 +13,8 @@ These components are designed to work together or independently, providing a sol
 
 ## Contents
 
-- [`FundMe.sol`](./FundMe.sol) — Crowdfunding contract leveraging Chainlink and `PriceConverter`.
-- [`PriceConverter.sol`](./PriceConverter.sol) — ETH/USD conversion library for Solidity contracts.
+- [`FundMe.sol`](contracts/FundMe.sol) — Crowdfunding contract leveraging Chainlink and `PriceConverter`.
+- [`PriceConverter.sol`](contracts/PriceConverter.sol) — ETH/USD conversion library for Solidity contracts.
 
 ---
 
