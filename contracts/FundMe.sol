@@ -4,6 +4,7 @@ pragma solidity ^0.8.30;
 import "./PriceConverter.sol";
 
 error NotOwner();
+error AmountTooLow(uint256 amountSentInUsd, uint256 minimunRequiredInUsD);
 
 contract FundMe {
   using PriceConverter for uint256;
@@ -20,17 +21,15 @@ contract FundMe {
   }
 
   function fund() public payable {
-    require(
-      msg.value.getConversionRate() >= MINIMUN_USD,
-      "Didn't send enough!"
-    );
+    uint256 sentInUsd = msg.value.getConversionRate();
+    if (sentInUsd < MINIMUN_USD) {
+      revert AmountTooLow(sentInUsd, MINIMUN_USD);
+    }
     funders.push(msg.sender);
     addressToAmountFunded[msg.sender] += msg.value;
   }
 
   modifier onlyOwner() {
-    // require(msg.sender == i_owner, "Sender is not owner!");
-    // Gas saver
     if (msg.sender != i_owner) {
       revert NotOwner();
     }
